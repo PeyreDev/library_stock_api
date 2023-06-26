@@ -13,6 +13,4 @@ module.exports = {
       return callback(null, results[0]);
     });
   },
-
-  // Autres fonctions pour la création, la mise à jour et la suppression des utilisateurs
 };

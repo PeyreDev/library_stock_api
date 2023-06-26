@@ -9,31 +9,20 @@ const connection = mysql.createConnection({
     database: process.env.DB_DATABASE
 });
 
-const initDatabase = () => {
-  return new Promise((resolve, reject) => {
-    connection.connect((error) => {
-      if (error) {
-        reject(error);
-      } else {
-        console.log('Connected to the MySQL server.');
-        resolve();
-      }
-    });
-  });
-};
-
 const closeDatabaseConnection = () => {
   return new Promise((resolve, reject) => {
     connection.end((error) => {
       if (error) {
         reject(error);
       } else {
+        console.log("Connexion closed successfuly")
         resolve();
       }
     });
   });
 };
 
+// Signal handler for database connexion end & process.exit on Ctrl+C key press
 process.on('SIGINT', async () => {
   console.log('Closing the application...');
   try {
@@ -48,5 +37,5 @@ process.on('SIGINT', async () => {
 
 module.exports = {
   connection,
-  initDatabase
+  closeDatabaseConnection
 }
