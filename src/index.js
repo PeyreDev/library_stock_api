@@ -3,10 +3,8 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-/*
-    Look for let connexion.connect here or in the config/database.js
-*/
-//connection.connect();
+const authRoutes = require('./routes/auth/auth');
+app.use('/api/auth', authRoutes);
 
 app.listen(port, () => {
     console.log(`Library_stock_api listening on port ${port}`)
