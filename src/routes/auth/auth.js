@@ -1,5 +1,5 @@
 const auth_middleware = require("../../middleware/auth_middleware");
-const connection = require("../../config/database");
+const {connection} = require("../../config/database");
 const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
