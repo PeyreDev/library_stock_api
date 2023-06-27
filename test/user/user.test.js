@@ -56,6 +56,23 @@ describe('User API', () => {
             });
 
             expect(response.status).toBe(200);
-        })
-    })
+        });
+    });
+
+    // Update user
+    describe('POST /api/user/update/:id', () => {
+        it('should update user', async () => {
+            const userId = 2;
+            const name = 'UpdateTest';
+            const first_name = 'JestUpdateTest';
+            const mail = 'updateTest@yahoo.com';
+            const password = "password345";
+
+            const response = await request(app).post(`/api/user/update/${userId}`).send({
+                name, first_name, mail, password
+            });
+
+            expect(response.status).toBe(200);
+        });
+    });
 });
