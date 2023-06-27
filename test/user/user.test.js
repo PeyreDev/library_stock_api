@@ -26,7 +26,6 @@ describe('User API', () => {
     describe('GET /api/user/mail/:mail', () => {
         it('should return user by mail', async () => {
             const mail = "test1@gmail.com";
-            console.log("Mail : " + mail)
             const response = await request(app).get(`/api/user/mail/${mail}`);
 
             expect(response.status).toBe(200);
@@ -42,4 +41,21 @@ describe('User API', () => {
             expect(response.body).toHaveProperty('message', 'An error occurred while retrieving the user');
         });
     });
+
+    // Create user
+    describe('POST /api/user/create', () => {
+        it('should create user', async () => {
+            const name = 'CreateTest';
+            const first_name = 'WithJest';
+            const mail = 'createTest@gmail.com';
+            const password = 'password123';
+            const role_id = 1;
+
+            const response = await request(app).post(`/api/user/create`). send({
+                name, first_name, mail, password, role_id
+            });
+
+            expect(response.status).toBe(200);
+        })
+    })
 });

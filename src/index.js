@@ -2,9 +2,13 @@ const { connection, initDatabase } = require('./config/database');
 const express = require('express')
 const app = express()
 const port = 3000
+const bodyParser = require('body-parser');
 
 const authRoutes = require('./routes/auth/auth');
 const userRoutes = require('./routes/user/user');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Database connection
 connection.connect(function(err) {

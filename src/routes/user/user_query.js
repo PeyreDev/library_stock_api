@@ -26,4 +26,15 @@ module.exports = {
       return callback(null, results[0]);
     });
   },
+
+  createUser: function (name, first_name, mail, password, role_id, callback) {
+    const query = "INSERT INTO user(name, first_name, mail, password, id_user_role) VALUES(?, ?, ?, ?, ?);";
+    const params = [name, first_name, mail, password, role_id];
+    connection.query(query, params, function (error, results) {
+      if (error) {
+        return callback(error, null);
+      }
+      return callback(null, results);
+    });
+  }
 };
