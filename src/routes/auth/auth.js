@@ -1,9 +1,11 @@
-const auth_middleware = require("../../middleware/auth_middleware");
 const {connection} = require("../../config/database");
 const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
 
+const auth_middleware = require("../../middleware/auth_middleware");
+
+// Login
 router.post("/login", function(req, res) {
         console.log("request login");
         const { mail, password } = req.body;
@@ -12,7 +14,7 @@ router.post("/login", function(req, res) {
         }
         auth_middleware.account_exists(mail, function (response) {
             if (!response) {
-                return res.status(400).json({ message: "This account doesn't exists."})
+                return res.status(400).json({ message: "This account doesn't exists."});
             }
             connection.query("SELECT * FROM user WHERE mail = ?", [mail], function (err, result, field) {
                 if (err) {

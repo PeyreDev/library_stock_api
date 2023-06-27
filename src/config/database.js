@@ -1,6 +1,7 @@
 const mysql = require("mysql");
 require("dotenv").config();
 
+// MySQL Database Configuration
 const connection = mysql.createConnection({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
@@ -9,6 +10,7 @@ const connection = mysql.createConnection({
     database: process.env.DB_DATABASE
 });
 
+// Close Database connexion function
 const closeDatabaseConnection = () => {
   return new Promise((resolve, reject) => {
     connection.end((error) => {
@@ -38,4 +40,4 @@ process.on('SIGINT', async () => {
 module.exports = {
   connection,
   closeDatabaseConnection
-}
+};
