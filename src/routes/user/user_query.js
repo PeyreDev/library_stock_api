@@ -36,5 +36,16 @@ module.exports = {
       }
       return callback(null, results);
     });
+  },
+
+  updateUser: function (userId, name, firstname, mail, password, callback) {
+    const query = "UPDATE user SET name = ?, first_name = ?, mail = ?, password = ? WHERE id = ?";
+    const params = [name, firstname, mail, password, userId];
+    connection.query(query, params, function (error, results) {
+      if (error) {
+        return callback(error, null);
+      }
+      return callback(null, results);
+    });
   }
 };
