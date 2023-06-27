@@ -8,7 +8,20 @@ module.exports = {
         return callback(error, null);
       }
       if (results.length === 0) {
-        return callback('Utilisateur introuvable', null);
+        return callback('User not found', null);
+      }
+      return callback(null, results[0]);
+    });
+  },
+
+  getUserByMail: function (mail, callback) {
+    const query = 'SELECT * FROM user WHERE mail = ?';
+    connection.query(query, [mail], function (error, results) {
+      if (error) {
+        return callback(error, null);
+      }
+      if (results.length === 0) {
+        return callback('User not found', null);
       }
       return callback(null, results[0]);
     });
