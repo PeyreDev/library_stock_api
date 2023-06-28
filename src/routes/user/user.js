@@ -53,7 +53,7 @@ router.post('/update/:id', (req, res) => {
     userId, name, first_name, mail, password,
     (error, result) => {
       if (error) {
-        return res.status(400).json({ message: 'An error updating the user -> ' + error });
+        return res.status(400).json({ message: 'An error occured updating the user -> ' + error });
       }
       return res.status(200).json(result);
     }
@@ -61,5 +61,14 @@ router.post('/update/:id', (req, res) => {
 });
 
 // Delete User
+router.post('/delete/:id', (req, res) => {
+  const userId = req.params.id;
+  user_query.deleteUser(userId, (error, result) => {
+    if (error) {
+      return res.status(400).json({ message: 'An error occured deleting the user -> ' + error });
+    }
+    return res.status(200).json(result);
+  });
+});
 
 module.exports = router;

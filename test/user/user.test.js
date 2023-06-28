@@ -61,7 +61,7 @@ describe('User API', () => {
 
     // Update user
     describe('POST /api/user/update/:id', () => {
-        it('should update user', async () => {
+        it('should update user by ID', async () => {
             const userId = 2;
             const name = 'UpdateTest';
             const first_name = 'JestUpdateTest';
@@ -71,6 +71,16 @@ describe('User API', () => {
             const response = await request(app).post(`/api/user/update/${userId}`).send({
                 name, first_name, mail, password
             });
+
+            expect(response.status).toBe(200);
+        });
+    });
+
+    // Delete user
+    describe('POST /api/user/delete/:id', () => {
+        it('should delete user by ID', async () => {
+            const userId = 2;
+            const response = await request(app).post(`/api/user/delete/${userId}`);
 
             expect(response.status).toBe(200);
         });

@@ -47,5 +47,15 @@ module.exports = {
       }
       return callback(null, results);
     });
+  },
+
+  deleteUser: function (userId, callback) {
+    const query = "DELETE FROM user WHERE id = ?";
+    connection.query(query, [userId], function (error, results) {
+      if (error) {
+        return callback(error, null);
+      }
+      return callback(null, results);
+    });
   }
 };
