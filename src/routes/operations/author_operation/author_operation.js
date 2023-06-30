@@ -21,4 +21,19 @@ router.post('/create', (req, res) => {
     );
 });
 
+// Update author operation
+router.post('/update/:id', (req, res) => {
+    const authorOperationId = req.params.id;
+    const {date, comment} = req.body;
+    author_operation_query.update_author_operation(
+        authorOperationId, date, comment,
+        (error, result) => {
+            if (error) {
+                return res.status(400).json({ message: 'An error occured updating the author operation' });
+            }
+            return res.status(200).json(result);
+        }
+    );
+});
+
 module.exports = router;
