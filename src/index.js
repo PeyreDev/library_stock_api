@@ -1,4 +1,4 @@
-const { connection, initDatabase } = require('./config/database');
+const { connection } = require('./config/database');
 const express = require('express')
 const app = express()
 const port = 3000
@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 
 const authRoutes = require('./routes/auth/auth');
 const userRoutes = require('./routes/user/user');
+const authorOperationRoutes = require('./routes/operations/author_operation/author_operation');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,6 +21,7 @@ connection.connect(function(err) {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/operation/author_operation', authorOperationRoutes);
 
 module.exports = app; // We export app for testing with Jest
 
