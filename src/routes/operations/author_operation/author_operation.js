@@ -10,11 +10,11 @@ router.post('/create', (req, res) => {
         return res.status(400).json({ message: 'Missing required fields' });
     }
 
-    author_operation_query.create_author_operation(
+    author_operation_query.createAuthorOperation(
         date, comment, userId, authorId, operationTypeId,
         (error, result) => {
             if (error) {
-              return res.status(400).json({ message: 'An error occured creating the author operation' });
+              return res.status(400).json({ message: 'An error occured while creating the author operation' });
             }
             return res.status(200).json(result);
         }
@@ -25,15 +25,26 @@ router.post('/create', (req, res) => {
 router.post('/update/:id', (req, res) => {
     const authorOperationId = req.params.id;
     const {date, comment} = req.body;
-    author_operation_query.update_author_operation(
+    author_operation_query.updateAuthorOperation(
         authorOperationId, date, comment,
         (error, result) => {
             if (error) {
-                return res.status(400).json({ message: 'An error occured updating the author operation' });
+                return res.status(400).json({ message: 'An error occured while updating the author operation' });
             }
             return res.status(200).json(result);
         }
     );
 });
+
+// Get author operation by ID
+router.get('/id/:id', (req, res) => {
+    const authorOperationId = req.params.id;
+    author_operation_query.getAuthorOperationById(authorOperationId, (error, result) => {
+        if (error) {
+            return res.status(400).json({ message: 'An error occurred while retrieving the author operation' });
+        }
+        return res.status(200).json(result);
+    });
+})
 
 module.exports = router;
