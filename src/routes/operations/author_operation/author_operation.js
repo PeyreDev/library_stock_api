@@ -14,7 +14,7 @@ router.post('/create', (req, res) => {
         date, comment, userId, authorId, operationTypeId,
         (error, result) => {
             if (error) {
-              return res.status(400).json({ message: 'An error occured while creating the author operation' });
+              return res.status(400).json({ message: 'An error occured while creating the author operation -> ' + error });
             }
             return res.status(200).json(result);
         }
@@ -29,7 +29,7 @@ router.post('/update/:id', (req, res) => {
         authorOperationId, date, comment,
         (error, result) => {
             if (error) {
-                return res.status(400).json({ message: 'An error occured while updating the author operation' });
+                return res.status(400).json({ message: 'An error occured while updating the author operation -> ' + error });
             }
             return res.status(200).json(result);
         }
@@ -41,7 +41,7 @@ router.get('/id/:id', (req, res) => {
     const authorOperationId = req.params.id;
     author_operation_query.getAuthorOperationById(authorOperationId, (error, result) => {
         if (error) {
-            return res.status(400).json({ message: 'An error occurred while retrieving the author operation' });
+            return res.status(400).json({ message: 'An error occurred while retrieving the author operation -> ' + error });
         }
         return res.status(200).json(result);
     });

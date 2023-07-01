@@ -1,4 +1,3 @@
-const { error } = require('console');
 const { connection } = require('../../../config/database');
 
 module.exports = {
@@ -34,7 +33,7 @@ module.exports = {
             if (error) {
                 return callback(error, null);
             }
-            return callback(null, results);
+            return callback(null, results[0]);
         });
     }
 }

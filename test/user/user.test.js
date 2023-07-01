@@ -10,7 +10,7 @@ describe('User API', () => {
 
             expect(response.status).toBe(200);
             expect(response.body).toHaveProperty('id', userId);
-            expect(response.body).toHaveProperty('name', 'test1');
+            expect(response.body).toHaveProperty('name', 'admin');
         });
 
         it('should return 400 if user not found', async () => {
@@ -25,12 +25,12 @@ describe('User API', () => {
     // Get user by mail
     describe('GET /api/user/mail/:mail', () => {
         it('should return user by mail', async () => {
-            const mail = "test1@gmail.com";
+            const mail = "admin.def@gmail.com";
             const response = await request(app).get(`/api/user/mail/${mail}`);
 
             expect(response.status).toBe(200);
             expect(response.body).toHaveProperty('mail', mail);
-            expect(response.body).toHaveProperty('name', 'test1');
+            expect(response.body).toHaveProperty('name', 'admin');
         });
 
         it('should return 400 if user not found', async () => {
@@ -62,7 +62,7 @@ describe('User API', () => {
     // Update user
     describe('POST /api/user/update/:id', () => {
         it('should update user by ID', async () => {
-            const userId = 2;
+            const userId = 4;
             const name = 'UpdateTest';
             const first_name = 'JestUpdateTest';
             const mail = 'updateTest@yahoo.com';
@@ -79,7 +79,7 @@ describe('User API', () => {
     // Delete user
     describe('POST /api/user/delete/:id', () => {
         it('should delete user by ID', async () => {
-            const userId = 2;
+            const userId = 3;
             const response = await request(app).post(`/api/user/delete/${userId}`);
 
             expect(response.status).toBe(200);

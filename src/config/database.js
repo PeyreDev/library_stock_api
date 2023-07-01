@@ -17,7 +17,8 @@ const closeDatabaseConnection = () => {
       if (error) {
         reject(error);
       } else {
-        console.log("Connexion closed successfuly")
+        console.log("Connexion closed successfuly");
+        isDatabaseConnected = false;
         resolve();
       }
     });
